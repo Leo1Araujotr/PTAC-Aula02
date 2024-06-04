@@ -17,6 +17,20 @@ export default function Main(){
     
     ]);
     };
+
+    const remover = (id) => {
+         const novalista = listaContatos.filter(
+            (contato, index)=>{
+                if(index !== id){
+                    return contato
+                } else{
+                    return null
+                }
+            }
+         )
+        alert(id);
+    }
+
     console.table(listaContatos);
 
     return(
@@ -26,7 +40,7 @@ export default function Main(){
           {nome}
 
       
-         <label htmlFor="NumeroTelefone">N. Telefone:</label> <input type="text" telefone-contato=""  id="telefone" onChange={(event) => setTelefone(event.target.value)}/>
+         <label htmlFor="contato">N. Telefone:</label> <input type="text" telefone-contato=""  id="telefone" onChange={(event) => setTelefone(event.target.value)}/>
           {telefone}
 
 
@@ -34,6 +48,13 @@ export default function Main(){
           {CPF}
          <button>Enviar</button>
          </form>
+         {listaContatos.map((contato, index) => 
+           <div key={index}>
+              <p>{contato.nomeSalvo}</p>
+              <p>{contato.telefoneSalvo}</p>
+              <button onClick={() => remover(index)}>X</button>
+           </div>
+        )}
     </main>
     );
 
